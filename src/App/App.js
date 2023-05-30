@@ -3,11 +3,16 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoForm from "../components/TodoForm";
 import TodoList from "../components/TodoList";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../components/LoginButton";
+import LogoutButton from "../components/LogoutButton";
+import Profile from "../components/Profile";
 
 const LOCAL_STORAGE_KEY = "react-todo-list-todos";
 
 function App() {
   const [todos, setTodos] = useState([]);
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   useEffect(() => {
     // fires when app component mounts to the DOM
@@ -51,13 +56,19 @@ function App() {
         React Todo
       </Typography>
       <Typography style={{ padding: 10 }} variant="h4">
-        Codehooks.io NoSql API Backend
+        Codehooks.io API Backend
       </Typography>
+      <div style={{ padding: 10 }}>
+        {isAuthenticated ? '' : <LoginButton />}
+        {isAuthenticated ? <LogoutButton /> : ''}
+      </div>
+      <Profile />
       <TodoForm addTodo={addTodo} />
       <TodoList
-        todos={todos}
+        todos={isAuthenticated ? todos : []}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
+        isAuthenticated={isAuthenticated}
       />
     </div>
   );

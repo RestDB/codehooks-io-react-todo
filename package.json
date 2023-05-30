@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://restdb.github.com/codehooks-io-react-todo/",
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.0",
     "@material-ui/core": "^4.9.7",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,10 +16,10 @@
     "uuid": "^7.0.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "react-scripts build",
+    "build": "react-scripts --openssl-legacy-provider build",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -2,7 +2,7 @@ import { List } from "@material-ui/core";
 import React from "react";
 import Todo from "./Todo";
 
-function TodoList({ todos, removeTodo, toggleComplete }) {
+function TodoList({ todos, removeTodo, toggleComplete, isAuthenticated }) {  
   return (
     <List>
       {todos.map(todo => (
