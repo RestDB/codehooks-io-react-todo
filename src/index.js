@@ -19,8 +19,7 @@ ReactDOM.render(
       authorizationParams={{
         redirect_uri: redirectUri,
         audience: `https://${domain}/api/v2/`,
-        scope: "read:current_user profile email",
-        useRefreshTokens: true
+        scope: "read:current_user profile email"
       }}
     >
       <App />

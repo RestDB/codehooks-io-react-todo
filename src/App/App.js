@@ -16,7 +16,7 @@ function App() {
     apiMessage: "",
     error: null,
   });
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently} = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup} = useAuth0();
 
 
   useEffect(() => {
@@ -35,12 +35,7 @@ function App() {
   const callApi = async () => {
     try {
       const {apiOrigin} = config;
-      const token = await getAccessTokenSilently({
-        authorizationParams: {
-          useRefreshTokens: true
-        }
-      }
-      );
+      const token = await getAccessTokenSilently();
       const response = await fetch(`${apiOrigin}/dev/todo`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -58,7 +53,8 @@ function App() {
 
       if (responseData) {
         setState({
-          ...state, todoItems: responseData
+          ...state, todoItems: responseData,
+          error: null
         });
       }
     } catch (error) {
@@ -68,6 +64,28 @@ function App() {
         error: error.error || error.message
       });
     }
+  };
+
+  const handleLoginAgain = async () => {
+    try {
+      await loginWithPopup();
+      setState({
+        ...state,
+        error: null,
+      });
+    } catch (error) {
+      setState({
+        ...state,
+        error: error.error,
+      });
+    }
+
+    await callApi();
+  };
+  
+  const handle = (e, fn) => {
+    e.preventDefault();
+    fn();
   };
 
   function addTodo(todo) {
@@ -107,6 +125,18 @@ function App() {
       <Typography style={{ padding: 10 }} variant="subtitle1">
         Auth0.com authentication - Codehooks.io API Backend
       </Typography>
+      {state.error === "login_required" && (
+          <div style={{color: 'red'}}>
+            You need to{" "}
+            <a
+              href="#/"
+              class="alert-link"
+              onClick={(e) => handle(e, handleLoginAgain)}
+            >
+              log in again
+            </a>
+          </div>
+        )}
       <div style={{ padding: 10 }}>
         {isAuthenticated ? '' : <LoginButton />}
         {isAuthenticated ? <LogoutButton /> : ''}
