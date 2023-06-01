@@ -127,7 +127,7 @@ function App() {
       </Typography>
       {state.error === "login_required" && (
           <div style={{color: 'red'}}>
-            You need to{" "}
+            Please{" "}
             <a
               href="#/"
               class="alert-link"
