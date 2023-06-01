@@ -9,8 +9,6 @@ import LogoutButton from "../components/LogoutButton";
 import Profile from "../components/Profile";
 import config from "../config.json";
 
-const LOCAL_STORAGE_KEY = "todo-items";
-
 function App() {
   const [state, setState] = useState({
     todoItems: [],
@@ -18,27 +16,31 @@ function App() {
     apiMessage: "",
     error: null,
   });
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup, getAccessTokenWithPopup } = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently} = useAuth0();
 
 
   useEffect(() => {
     // fires when app component mounts to the DOM
     console.log('init useEffect')
     
-    callApi().catch(error => console.error(error))
+    callApi().catch(error => console.error('Init error', error))
   }, []);
 
   useEffect(() => {
     // fires when todos array gets updated
     console.log('update', JSON.stringify(state.todoItems))
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.todoItems));
-    console.log(LOCAL_STORAGE_KEY, localStorage)
+    
   }, [state.todoItems]);
   
   const callApi = async () => {
     try {
       const {apiOrigin} = config;
-      const token = await getAccessTokenSilently();
+      const token = await getAccessTokenSilently({
+        authorizationParams: {
+          useRefreshTokens: true
+        }
+      }
+      );
       const response = await fetch(`${apiOrigin}/dev/todo`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -60,10 +62,10 @@ function App() {
         });
       }
     } catch (error) {
-      console.error('Error', error)
+      console.error(error.error)
       setState({
         ...state,
-        error: error.error
+        error: error.error || error.message
       });
     }
   };
@@ -110,12 +112,18 @@ function App() {
         {isAuthenticated ? <LogoutButton /> : ''}
       </div>
       <Profile />
+      {state.error !== null ?? (
+          <Typography style={{color: 'red'}} variant="subtitle1">{state.error}</Typography>
+        )}
+      {isLoading ?? (
+        <div>Loading ...</div>
+      )}
       <TodoForm addTodo={addTodo} />
       <TodoList
         todos={isAuthenticated ? state.todoItems : []}
         removeTodo={removeTodo}
         toggleComplete={toggleComplete}
-        isAuthenticated={isAuthenticated}
+        isAuthenticated={isAuthenticated}        
       />
     </div>
   );

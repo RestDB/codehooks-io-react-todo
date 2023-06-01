@@ -20,6 +20,7 @@ ReactDOM.render(
         redirect_uri: redirectUri,
         audience: `https://${domain}/api/v2/`,
         scope: "read:current_user profile email",
+        useRefreshTokens: true
       }}
     >
       <App />
