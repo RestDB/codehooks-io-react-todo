@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "59a50ef052cb479eac4ab28690b78a0b",
+    "revision": "10c29a080ab8945063e88ab0c83cfe6c",
     "url": "/codehooks-io-react-todo/index.html"
   },
   {
-    "revision": "2c26de52fc79c0ae447d",
+    "revision": "5cd5ed7e9e94ecd1011d",
     "url": "/codehooks-io-react-todo/static/css/main.5af22e3c.chunk.css"
   },
   {
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/codehooks-io-react-todo/static/js/2.df853f48.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "2c26de52fc79c0ae447d",
-    "url": "/codehooks-io-react-todo/static/js/main.6f9670d1.chunk.js"
+    "revision": "5cd5ed7e9e94ecd1011d",
+    "url": "/codehooks-io-react-todo/static/js/main.9a3f361f.chunk.js"
   },
   {
     "revision": "4e0e34f265fae8f33b01b27ae29d9d6f",
-    "url": "/codehooks-io-react-todo/static/js/main.6f9670d1.chunk.js.LICENSE.txt"
+    "url": "/codehooks-io-react-todo/static/js/main.9a3f361f.chunk.js.LICENSE.txt"
   },
   {
     "revision": "c4e41a28786be06abac4",
