@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/codehooks-io-react-todo/static/css/main.5af22e3c.chunk.css",
-    "main.js": "/codehooks-io-react-todo/static/js/main.aa4729fd.chunk.js",
-    "main.js.map": "/codehooks-io-react-todo/static/js/main.aa4729fd.chunk.js.map",
+    "main.js": "/codehooks-io-react-todo/static/js/main.431c7393.chunk.js",
+    "main.js.map": "/codehooks-io-react-todo/static/js/main.431c7393.chunk.js.map",
     "runtime-main.js": "/codehooks-io-react-todo/static/js/runtime-main.2daa6d83.js",
     "runtime-main.js.map": "/codehooks-io-react-todo/static/js/runtime-main.2daa6d83.js.map",
     "static/js/2.df853f48.chunk.js": "/codehooks-io-react-todo/static/js/2.df853f48.chunk.js",
     "static/js/2.df853f48.chunk.js.map": "/codehooks-io-react-todo/static/js/2.df853f48.chunk.js.map",
     "index.html": "/codehooks-io-react-todo/index.html",
-    "precache-manifest.48e42d3d434cdc9c01d5b8e5850f3240.js": "/codehooks-io-react-todo/precache-manifest.48e42d3d434cdc9c01d5b8e5850f3240.js",
+    "precache-manifest.f1183588fd045c2974c61bfe94e092bc.js": "/codehooks-io-react-todo/precache-manifest.f1183588fd045c2974c61bfe94e092bc.js",
     "service-worker.js": "/codehooks-io-react-todo/service-worker.js",
     "static/css/main.5af22e3c.chunk.css.map": "/codehooks-io-react-todo/static/css/main.5af22e3c.chunk.css.map",
     "static/js/2.df853f48.chunk.js.LICENSE.txt": "/codehooks-io-react-todo/static/js/2.df853f48.chunk.js.LICENSE.txt",
-    "static/js/main.aa4729fd.chunk.js.LICENSE.txt": "/codehooks-io-react-todo/static/js/main.aa4729fd.chunk.js.LICENSE.txt"
+    "static/js/main.431c7393.chunk.js.LICENSE.txt": "/codehooks-io-react-todo/static/js/main.431c7393.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.2daa6d83.js",
     "static/js/2.df853f48.chunk.js",
     "static/css/main.5af22e3c.chunk.css",
-    "static/js/main.aa4729fd.chunk.js"
+    "static/js/main.431c7393.chunk.js"
   ]
 }
