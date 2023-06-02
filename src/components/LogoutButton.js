@@ -9,7 +9,7 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
 
   return (
-    <Button variant="contained" onClick={() => logout({ logoutParams: { returnTo: redirectUri } })}>
+    <Button variant="text" onClick={() => logout({ logoutParams: { returnTo: redirectUri } })}>
       Log Out
     </Button>
   );

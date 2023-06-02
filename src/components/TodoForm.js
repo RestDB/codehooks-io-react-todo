@@ -4,7 +4,6 @@ import { v4 as uuid } from "uuid";
 
 const TodoForm = ({ addTodo }) => {
   const [todo, setTodo] = useState({
-    id: "",
     task: "",
     completed: false
   });
@@ -19,7 +18,8 @@ const TodoForm = ({ addTodo }) => {
     e.preventDefault(); // prevents browser refresh
     // trim() gets rid of string whitespace
     if (todo.task.trim()) {
-      addTodo({ ...todo, id: uuid() });
+      console.log('Add todo', todo)
+      addTodo(todo);
       setTodo({ ...todo, task: "" });
     }
   }

@@ -1,4 +1,5 @@
 import Typography from "@material-ui/core/Typography";
+import { Button } from "@material-ui/core";
 import Alert from '@material-ui/lab/Alert';
 import React, { useEffect, useState } from "react";
 import "./App.css";
@@ -10,6 +11,8 @@ import LogoutButton from "../components/LogoutButton";
 import Profile from "../components/Profile";
 import config from "../config.json";
 
+const {apiOrigin} = config;
+
 function App() {
   const [state, setState] = useState({
     todoItems: [],
@@ -17,7 +20,7 @@ function App() {
     apiMessage: "",
     error: null,
   });
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup, getAccessTokenWithPopup} = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup, loginWithRedirect, getAccessTokenWithPopup} = useAuth0();
 
 
   useEffect(() => {
@@ -35,7 +38,7 @@ function App() {
   
   const callApi = async () => {
     try {
-      const {apiOrigin} = config;
+      
       const token = await getAccessTokenSilently();
       const response = await fetch(`${apiOrigin}/dev/todo`, {
         headers: {
@@ -108,12 +111,27 @@ function App() {
     fn();
   };
 
-  function addTodo(todo) {
-    // adds new todo to beginning of todos array
-    console.log('add', isAuthenticated, user, state.todoItems)
-    setState({
-      ...state, todoItems: [todo, ...state.todoItems]
+  async function addTodo(todo) {
+    // adds new todo to beginning of todos array  
+    
+    const token = await getAccessTokenSilently();
+    console.log('add', todo)
+    const response = await fetch(`${apiOrigin}/dev/todo`, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(todo)
     });
+    console.log('Post data', response.status, response.statusText)
+    let responseData = await response.json();
+    console.log('Post data response', responseData);
+    await callApi();
+    
+    /*setState({
+      ...state, todoItems: [todo, ...state.todoItems]
+    });*/
   }
 
   function toggleComplete(_id) {
@@ -150,26 +168,12 @@ function App() {
 
       {state.error === "login_required" && (
           <Alert severity="warning">
-            Please{" "}
-            <a
-              href="#/"
-              className="alert-link"
-              onClick={(e) => handle(e, handleLoginAgain)}
-            >
-              log in
-            </a>
+            Authentication required: <Button variant="text" onClick={() => handleLoginAgain()}>Log In</Button>
           </Alert>
         )}
         {state.error === "consent_required" && (
           <Alert severity="warning">
-            Please{" "}
-            <a
-              href="#/"
-              className="alert-link"
-              onClick={(e) => handle(e, handleConsent)}
-            >
-              consent to get access to users API
-            </a>
+            API concent required: <Button variant="text" onClick={() => handleConsent()}>Grant</Button>            
           </Alert>
         )}
       <TodoForm addTodo={addTodo} />
