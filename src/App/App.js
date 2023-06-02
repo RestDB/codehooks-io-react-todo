@@ -1,4 +1,5 @@
 import Typography from "@material-ui/core/Typography";
+import Alert from '@material-ui/lab/Alert';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoForm from "../components/TodoForm";
@@ -16,7 +17,7 @@ function App() {
     apiMessage: "",
     error: null,
   });
-  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup} = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently, loginWithPopup, getAccessTokenWithPopup} = useAuth0();
 
 
   useEffect(() => {
@@ -41,15 +42,16 @@ function App() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      console.log('Fetch data', response.status, response.statusText)
       let responseData = await response.json();
+      console.log('Get data', responseData);
       responseData = responseData.map((todo) => {
         if (todo.completed === undefined) {
           todo.completed = false;
         }
         return todo;
       })
-      console.log(responseData);
+      
 
       if (responseData) {
         setState({
@@ -58,7 +60,7 @@ function App() {
         });
       }
     } catch (error) {
-      console.error(error.error)
+      console.error('API error', error)
       setState({
         ...state,
         error: error.error || error.message
@@ -82,6 +84,24 @@ function App() {
 
     await callApi();
   };
+
+  const handleConsent = async () => {
+    try {
+      await getAccessTokenWithPopup();
+      setState({
+        ...state,
+        error: null,
+      });
+    } catch (error) {
+      setState({
+        ...state,
+        error: error.error,
+      });
+    }
+
+    await callApi();
+  };
+
   
   const handle = (e, fn) => {
     e.preventDefault();
@@ -125,29 +145,33 @@ function App() {
       <Typography style={{ padding: 10 }} variant="subtitle1">
         Auth0.com authentication - Codehooks.io API Backend
       </Typography>
+      
+      <Profile />
+
       {state.error === "login_required" && (
-          <div style={{color: 'red'}}>
+          <Alert severity="warning">
             Please{" "}
             <a
               href="#/"
-              class="alert-link"
+              className="alert-link"
               onClick={(e) => handle(e, handleLoginAgain)}
             >
-              log in again
+              log in
             </a>
-          </div>
+          </Alert>
         )}
-      <div style={{ padding: 10 }}>
-        {isAuthenticated ? '' : <LoginButton />}
-        {isAuthenticated ? <LogoutButton /> : ''}
-      </div>
-      <Profile />
-      {state.error !== null ?? (
-          <Typography style={{color: 'red'}} variant="subtitle1">{state.error}</Typography>
+        {state.error === "consent_required" && (
+          <Alert severity="warning">
+            Please{" "}
+            <a
+              href="#/"
+              className="alert-link"
+              onClick={(e) => handle(e, handleConsent)}
+            >
+              consent to get access to users API
+            </a>
+          </Alert>
         )}
-      {isLoading ?? (
-        <div>Loading ...</div>
-      )}
       <TodoForm addTodo={addTodo} />
       <TodoList
         todos={isAuthenticated ? state.todoItems : []}
@@ -155,6 +179,14 @@ function App() {
         toggleComplete={toggleComplete}
         isAuthenticated={isAuthenticated}        
       />
+      <div style={{ padding: 10 }}>
+        {isAuthenticated ? <LogoutButton /> : ''}
+      </div>
+      
+      {state.error !== null ?
+          <Typography style={{color: 'red'}} variant="subtitle1">{state.error}</Typography>
+        : ''
+      }
     </div>
   );
 }

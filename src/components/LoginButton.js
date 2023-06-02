@@ -7,7 +7,7 @@ const LoginButton = () => {
   const { loginWithRedirect, loginWithPopup } = useAuth0();
   const scope = config.scope;
 
-  return <Button variant="contained" onClick={() => loginWithRedirect({"scope": scope})}>Log In</Button>;
+  return <Button variant="contained" onClick={() => loginWithPopup()}>Log In</Button>;
 };
 
 export default LoginButton;
