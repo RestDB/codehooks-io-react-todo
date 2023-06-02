@@ -128,31 +128,46 @@ function App() {
     let responseData = await response.json();
     console.log('Post data response', responseData);
     await callApi();
-    
-    /*setState({
-      ...state, todoItems: [todo, ...state.todoItems]
-    });*/
   }
 
-  function toggleComplete(_id) {
-    setState(
-      {
-        ...state, todoItems:
-          state.todoItems.map(todo => {
-            if (todo._id === _id) {
-              return {
-                ...todo,
-                completed: !todo.completed
-              };
-            }
-            return todo;
-          })
+  async function toggleComplete(_id) {
+    // find item
+    let todoUpdated = state.todoItems.filter(todo => {
+      return (todo._id === _id)
+    })
+    todoUpdated = todoUpdated[0]; // first item
+    todoUpdated.completed = !todoUpdated.completed;
+
+    const token = await getAccessTokenSilently();
+    console.log('add', todoUpdated)
+    const response = await fetch(`${apiOrigin}/dev/todo/${_id}`, {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(todoUpdated)
+    });
+    console.log('Put data', response.status, response.statusText)
+    let responseData = await response.json();
+    console.log('Put data response', responseData);
+    await callApi();
+  }
+
+  async function removeTodo(_id) {
+    const token = await getAccessTokenSilently();
+    console.log('delete', _id)
+    const response = await fetch(`${apiOrigin}/dev/todo/${_id}`, {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "content-type": "application/json",
       }
-    );
-  }
-
-  function removeTodo(_id) {
-    setState({ ...state, todoItems: state.todoItems.filter(todo => todo._id !== _id) });
+    });
+    console.log('Delete data', response.status, response.statusText)
+    let responseData = await response.json();
+    console.log('Delete data response', responseData);
+    await callApi();
   }
 
   return (
