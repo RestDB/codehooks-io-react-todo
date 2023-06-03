@@ -1,8 +1,14 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and following this [tutorial](https://youtu.be/nUl5QLkVdvU). We've modified tho project by adding support for user authentication and secure API by Auth.com, backend NoSql database and service API by Codehooks.io and upgraded Material UI to latest versjon 5. Also deployed static App resources to Github pages.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and following this [tutorial](https://youtu.be/nUl5QLkVdvU). 
 
-## Install 
+We've modified the project by adding support for:
+* User authentication and secure API calls by Auth.com
+* Backend NoSql database and service API's by Codehooks.io
+* Upgraded Material UI to latest versjon 5
+* Deployed static App resources to Github pages
+
+## Install frontend
 
 ```bash
 npx create-react-app todo\ncd my-app\nnpm start
@@ -14,6 +20,15 @@ npm install @mui/icons-material
 npm start
 
 npm i gh-pages
+```
+
+## Install backend
+
+```bash
+npm install codehooks -g
+cd backend
+coho init
+coho deploy
 ```
 
 ## Available Scripts
