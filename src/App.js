@@ -170,8 +170,7 @@ function App() {
 
   return (
     <div className="App">
-      <CssBaseline />
-      <Container maxWidth="sm">
+      
         <Typography style={{ padding: 10 }} variant="h2">
           React Todo
         </Typography>
@@ -207,8 +206,7 @@ function App() {
         {state.error !== null ?
         <Alert severity="warning">{state.error}</Alert>
           : ''
-        }
-        </Container>
+        }        
       </div>      
   );
 }

@@ -13,6 +13,7 @@ npm install @mui/material @emotion/react @emotion/styled\n
 npm install @mui/icons-material
 npm start
 
+npm i gh-pages
 ```
 
 ## Available Scripts
