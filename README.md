@@ -1,54 +1,83 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and following this [tutorial](https://youtu.be/nUl5QLkVdvU).
+# Getting Started with Create React App
 
-# React To Do App for Codehooks.io
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and following this [tutorial](https://youtu.be/nUl5QLkVdvU). We've modified tho project by adding support for user authentication and secure API by Auth.com, backend NoSql database and service API by Codehooks.io and upgraded Material UI to latest versjon 5. Also deployed static App resources to Github pages.
 
-## Description
+## Install 
 
-* A React to do application that utilizes local storage so refreshing the page does not remove the items in your to do list. Each item in your list can be deleted, or marked as done with strikethrough.
+```bash
+npx create-react-app todo\ncd my-app\nnpm start
+cd todo
+code .
+npm install @auth0/auth0-react
+npm install @mui/material @emotion/react @emotion/styled\n
+npm install @mui/icons-material
+npm start
 
-## Demo Link
+```
 
-* [Check out the Project](https://gseals.github.io/Local-Storage-React-ToDo-App)
+## Available Scripts
 
-## Technologies Used
+In the project directory, you can run:
 
-* [CSS3](https://www.w3.org/Style/CSS/Overview.en.html)
-* [HTML5](https://html.spec.whatwg.org/multipage/)
-* [JavaScript](https://www.javascript.com/)
-* [Material-UI Core 4.9.7](https://material-ui.com/)
-* [Material-UI Icons 4.9.1](https://www.npmjs.com/package/@material-ui/icons)
-* [ReactDOM 16.13.0](https://www.npmjs.com/package/react-dom)
-* [ReactJS 16.13.0](https://reactjs.org/docs/create-a-new-react-app.html)
-* [React Hooks](https://reactjs.org/docs/hooks-intro.html)
-* [uuid 7.0.2](https://www.npmjs.com/package/uuid)
+### `npm start`
 
-## Screenshots
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Landing Page
-![Landing Page](https://raw.githubusercontent.com/gseals/Local-Storage-React-ToDo-App/master/screenshots/Landing%20Page.png)
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-### Items in List
-![Items in List](https://raw.githubusercontent.com/gseals/Local-Storage-React-ToDo-App/master/screenshots/Items%20in%20List.png)
+### `npm test`
 
-### Items Marked Done
-![Items Marked Done](https://raw.githubusercontent.com/gseals/Local-Storage-React-ToDo-App/master/screenshots/Items%20Marked%20Done.png)
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### Item Deleted
-![Item Deleted](https://raw.githubusercontent.com/gseals/Local-Storage-React-ToDo-App/master/screenshots/Item%20Deleted.png)
+### `npm run build`
 
-## How to Run
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-* Clone down this project from [GitHub](https://github.com/gseals/Local-Storage-React-ToDo-App)
-* Install [http-server](https://www.npmjs.com/package/http-server) from npm.
-* In your browser, navigate to [https://localhost:3000/](https://localhost:3000/)
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Contributors
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-[Gabriel Seals](https://github.com/gseals)
+### `npm run eject`
 
-* Review: the instructor moves too fast and you will debug and figure out problems on your own, so good for experiencing fixing errors AND for exposure to new React stuff we haven't covered, bad for getting a video done quickly. Expect 45 minutes to an hour to complete
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-## Concepts covered
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-* Local storage so refreshing page keeps items on screen
-* will return to update list (worth re/watching just for the new stuff)
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

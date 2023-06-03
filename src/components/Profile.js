@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import {Typography} from '@mui/material';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {

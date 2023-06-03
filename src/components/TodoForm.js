@@ -1,4 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button, TextField } from '@mui/material';
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
@@ -32,7 +32,9 @@ const TodoForm = ({ addTodo }) => {
         name="task"
         value={todo.task}
         onChange={handleTaskInputChange}
+        variant="standard" 
       />
+      {" "}
       <Button type="submit">Submit</Button>
     </form>
   );

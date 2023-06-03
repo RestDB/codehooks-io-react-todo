@@ -1,10 +1,10 @@
-import { List } from "@material-ui/core";
+import { List } from '@mui/material';
 import React from "react";
 import Todo from "./Todo";
 
 const TodoList = ({ todos, removeTodo, toggleComplete, isAuthenticated }) => {  
   return (
-    <List>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       {todos.map(todo => (
         <Todo
           key={todo._id}

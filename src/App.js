@@ -1,15 +1,13 @@
-import Typography from "@material-ui/core/Typography";
-import { Button } from "@material-ui/core";
-import Alert from '@material-ui/lab/Alert';
+import {Container, Box, Typography, Button, Alert,CssBaseline} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import TodoForm from "../components/TodoForm";
-import TodoList from "../components/TodoList";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "../components/LoginButton";
-import LogoutButton from "../components/LogoutButton";
-import Profile from "../components/Profile";
-import config from "../config.json";
+import LoginButton from "./components/LoginButton";
+import LogoutButton from "./components/LogoutButton";
+import Profile from "./components/Profile";
+import config from "./config.json";
 
 const {apiOrigin} = config;
 
@@ -172,41 +170,46 @@ function App() {
 
   return (
     <div className="App">
-      <Typography style={{ padding: 10 }} variant="h2">
-        React Todo
-      </Typography>
-      <Typography style={{ padding: 10 }} variant="subtitle1">
-        Auth0.com authentication - Codehooks.io API Backend
-      </Typography>
-      
-      <Profile />
+      <CssBaseline />
+      <Container maxWidth="sm">
+        <Typography style={{ padding: 10 }} variant="h2">
+          React Todo
+        </Typography>
+        <Typography style={{ padding: 10 }} variant="subtitle1">
+          Auth0.com authentication - Codehooks.io API Backend
+        </Typography>
+        
+        <Profile />
 
-      {state.error === "login_required" && (
-          <Alert severity="warning">
-            Authentication required: <Button variant="text" onClick={() => handleLoginAgain()}>Log In</Button>
-          </Alert>
-        )}
-        {state.error === "consent_required" && (
-          <Alert severity="warning">
-            API concent required: <Button variant="text" onClick={() => handleConsent()}>Grant</Button>            
-          </Alert>
-        )}
-      <TodoForm addTodo={addTodo} />
-      <TodoList
-        todos={isAuthenticated ? state.todoItems : []}
-        removeTodo={removeTodo}
-        toggleComplete={toggleComplete}
-        isAuthenticated={isAuthenticated}        
-      />
-      <div style={{ padding: 10 }}>
-        {isAuthenticated ? <LogoutButton /> : ''}
-      </div>
-      
-      {state.error !== null ?
-          <Typography style={{color: 'red'}} variant="subtitle1">{state.error}</Typography>
-        : ''
-      }
-    </div>
+        {state.error === "login_required" && (
+            <Alert severity="info">
+              Authentication required: <Button variant="text" onClick={() => handleLoginAgain()}>Log In</Button>
+            </Alert>
+          )}
+          {state.error === "consent_required" && (
+            <Alert severity="warning">
+              API concent required: <Button variant="text" onClick={() => handleConsent()}>Grant</Button>            
+            </Alert>
+          )}
+        <TodoForm addTodo={addTodo} />
+        <Box sx={{margin: '2em'}}>
+          <TodoList
+            todos={isAuthenticated ? state.todoItems : []}
+            removeTodo={removeTodo}
+            toggleComplete={toggleComplete}
+            isAuthenticated={isAuthenticated}        
+          />
+        </Box>
+        <Box>
+          {isAuthenticated ? <LogoutButton /> : ''}
+        </Box>
+        
+        {state.error !== null ?
+        <Alert severity="warning">{state.error}</Alert>
+          : ''
+        }
+        </Container>
+      </div>      
   );
 }
 
