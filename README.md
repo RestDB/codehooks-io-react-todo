@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and following this [tutorial](https://youtu.be/nUl5QLkVdvU). 
 
-We've modified the project by adding support for:
+We've modified the [original todo-react project](https://github.com/samgamage/todo-react) by adding support for:
 * User authentication and secure API calls by Auth.com
 * Backend NoSql database and service API's by Codehooks.io
 * Upgraded Material UI to latest versjon 5
