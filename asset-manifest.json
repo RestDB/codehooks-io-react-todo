@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/codehooks-io-react-todo/static/css/main.073c9b0a.css",
-    "main.js": "/codehooks-io-react-todo/static/js/main.626fdb1e.js",
+    "main.css": "/codehooks-io-react-todo/static/css/main.937d02e6.css",
+    "main.js": "/codehooks-io-react-todo/static/js/main.5354ec7e.js",
     "index.html": "/codehooks-io-react-todo/index.html",
-    "main.073c9b0a.css.map": "/codehooks-io-react-todo/static/css/main.073c9b0a.css.map",
-    "main.626fdb1e.js.map": "/codehooks-io-react-todo/static/js/main.626fdb1e.js.map"
+    "main.937d02e6.css.map": "/codehooks-io-react-todo/static/css/main.937d02e6.css.map",
+    "main.5354ec7e.js.map": "/codehooks-io-react-todo/static/js/main.5354ec7e.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.626fdb1e.js"
+    "static/css/main.937d02e6.css",
+    "static/js/main.5354ec7e.js"
   ]
 }
