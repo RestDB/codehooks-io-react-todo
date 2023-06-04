@@ -38,7 +38,7 @@ function App() {
     try {
       
       const token = await getAccessTokenSilently();
-      const response = await fetch(`${apiOrigin}/dev/todo`, {
+      const response = await fetch(`${apiOrigin}/todo`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -114,7 +114,7 @@ function App() {
     
     const token = await getAccessTokenSilently();
     console.log('add', todo)
-    const response = await fetch(`${apiOrigin}/dev/todo`, {
+    const response = await fetch(`${apiOrigin}/todo`, {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -138,7 +138,7 @@ function App() {
 
     const token = await getAccessTokenSilently();
     console.log('add', todoUpdated)
-    const response = await fetch(`${apiOrigin}/dev/todo/${_id}`, {
+    const response = await fetch(`${apiOrigin}/todo/${_id}`, {
       method: "PUT",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -155,7 +155,7 @@ function App() {
   async function removeTodo(_id) {
     const token = await getAccessTokenSilently();
     console.log('delete', _id)
-    const response = await fetch(`${apiOrigin}/dev/todo/${_id}`, {
+    const response = await fetch(`${apiOrigin}/todo/${_id}`, {
       method: "DELETE",
       headers: {
         "Authorization": `Bearer ${token}`,
@@ -190,21 +190,23 @@ function App() {
               API concent required: <Button variant="text" onClick={() => handleConsent()}>Grant</Button>            
             </Alert>
           )}
-        <TodoForm addTodo={addTodo} />
-        <Box sx={{margin: '2em'}}>
-          <TodoList
-            todos={isAuthenticated ? state.todoItems : []}
-            removeTodo={removeTodo}
-            toggleComplete={toggleComplete}
-            isAuthenticated={isAuthenticated}        
-          />
-        </Box>
+        {isAuthenticated ? <TodoForm addTodo={addTodo}/> : ''}
+          
+          <Box sx={{margin: '2em'}}>
+            <TodoList
+              todos={isAuthenticated ? state.todoItems : []}
+              removeTodo={removeTodo}
+              toggleComplete={toggleComplete}
+              isAuthenticated={isAuthenticated}        
+            />
+          </Box>
+        
         <Box>
           {isAuthenticated ? <LogoutButton /> : ''}
         </Box>
         
         {state.error !== null ?
-        <Alert severity="warning">{state.error}</Alert>
+        <Box>Debug data: {state.error}</Box>
           : ''
         }        
       </div>      

@@ -28,6 +28,7 @@ npm i gh-pages
 npm install codehooks -g
 cd backend
 coho init
+coho jwks 'https://dev-nofd3nl3.us.auth0.com/.well-known/jwks.json'
 coho deploy
 ```
 

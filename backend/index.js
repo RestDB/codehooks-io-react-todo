@@ -4,12 +4,13 @@ import {userProfileFromAuth0} from './authHelper.js'
 
 app.use('/todo*', userProfileFromAuth0);
 
-app.get('/todo', async (req, res) => {
-  console.log('Get todo for', req.user.email)
+app.get('/todo', async (req, res) => {  
+  console.log('Get todo')
   const db = await Datastore.open();
+  res.json([])
   db.getMany('tododata', {
     filter: {owner: req.user.email},
-    sort: {_id: -1}
+    sort: {completed: 1, _id: -1}
   }).pipe(res);
 })
 

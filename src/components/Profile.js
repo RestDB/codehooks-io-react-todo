@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography} from '@mui/material';
+import {Typography, Box, Grid} from '@mui/material';
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
@@ -7,11 +7,11 @@ const Profile = () => {
 
   return (
     isAuthenticated && (
-      <div>
-        <img src={user.picture} alt={user.name} />
-        <Typography style={{ padding: 10 }} variant="subtitle1">{user.name}</Typography>
-        <Typography style={{ padding: 10 }} variant="subtitle2">{user.email}</Typography>
-      </div>
+      <Box>
+        <img src={user.picture} alt={user.name}/><br/>
+        Name: {user.name}<br/>
+        Email: {user.email}          
+      </Box>  
     )
   );
 };
