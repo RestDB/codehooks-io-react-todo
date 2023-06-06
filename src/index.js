@@ -16,10 +16,11 @@ ReactDOM.render(
     <Auth0Provider
       domain={domain}
       clientId={clientId}
+      cacheLocation="localstorage"
       authorizationParams={{
         redirect_uri: redirectUri,
         audience: `https://${domain}/api/v2/`,
-        scope: scope
+        scope: scope        
       }}
     >
       <App />

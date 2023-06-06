@@ -27,13 +27,13 @@ function App() {
     
     callApi().catch(error => console.error('Init error', error))
   }, []);
-
+/*
   useEffect(() => {
     // fires when todos array gets updated
     console.log('update', JSON.stringify(state.todoItems))
     
   }, [state.todoItems]);
-  
+*/  
   const callApi = async () => {
     try {
       
@@ -171,7 +171,7 @@ function App() {
   return (
     <div className="App">
       
-        <Typography style={{ padding: 10 }} variant="h2">
+        <Typography variant="h2">
           React Todo
         </Typography>
         <Typography style={{ padding: 10 }} variant="subtitle1">

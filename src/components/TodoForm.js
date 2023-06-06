@@ -1,4 +1,6 @@
 import { Button, TextField } from '@mui/material';
+import { Add } from '@mui/icons-material';
+
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 
@@ -35,7 +37,8 @@ const TodoForm = ({ addTodo }) => {
         variant="standard" 
       />
       {" "}
-      <Button type="submit">Submit</Button>
+      <Button type="submit" variant="outlined" endIcon={<Add />}>new</Button>
+      
     </form>
   );
 }
