@@ -1,10 +1,9 @@
-import {Container, Box, Typography, Button, Alert,CssBaseline} from '@mui/material';
+import {Box, Typography, Button, Alert} from '@mui/material';
 import React, { useEffect, useState } from "react";
 import "./App.css";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "./components/LoginButton";
 import LogoutButton from "./components/LogoutButton";
 import Profile from "./components/Profile";
 import config from "./config.json";
@@ -27,20 +26,15 @@ function App() {
     
     callApi().catch(error => console.error('Init error', error))
   }, []);
-/*
-  useEffect(() => {
-    // fires when todos array gets updated
-    console.log('update', JSON.stringify(state.todoItems))
-    
-  }, [state.todoItems]);
-*/  
+
   const callApi = async () => {
     try {
       
       const token = await getAccessTokenSilently();
       const response = await fetch(`${apiOrigin}/todo`, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
+          "Keep-Alive": "timeout=5, max=1000"
         },
       });
       console.log('Fetch data', response.status, response.statusText)
@@ -190,7 +184,7 @@ function App() {
               API concent required: <Button variant="text" onClick={() => handleConsent()}>Grant</Button>            
             </Alert>
           )}
-        {isAuthenticated ? <TodoForm addTodo={addTodo}/> : ''}
+        {isAuthenticated && <TodoForm addTodo={addTodo}/>}
           
           <Box sx={{margin: '2em'}}>
             <TodoList
@@ -203,12 +197,8 @@ function App() {
         
         <Box>
           {isAuthenticated ? <LogoutButton /> : ''}
-        </Box>
-        
-        {state.error !== null ?
-        <Box>Debug data: {state.error}</Box>
-          : ''
-        }        
+          {state.error !== null && <Box sx={{color: 'lightgrey'}}>Debug data: {state.error}</Box>}
+        </Box>                
       </div>      
   );
 }
