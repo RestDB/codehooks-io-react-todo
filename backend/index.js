@@ -13,7 +13,7 @@ app.get('/todo', async (req, res) => {
   db.getMany('tododata', {
     filter: {owner: req.user.email}, // filter Todo items by authenticated user.email
     sort: {completed: 1, _id: -1}
-  }).pipe(res);
+  }).json(res);
 })
 
 app.post('/todo', async (req, res) => {
